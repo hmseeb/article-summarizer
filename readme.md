@@ -13,4 +13,4 @@ Alongside building this application, you'll also learn how to:
 - write clean code
 
 ## Live Preview
-[AI Summarizer](https://magical-sprinkles-6d245d.netlify.app/)
+[AI Summarizer](https://article-summarizer-hmseeb.netlify.app/)
