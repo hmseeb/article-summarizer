@@ -159,7 +159,7 @@ const Demo = () => {
               </h2>
               <div className="summary_box relative">
                 <div
-                  className="copy_btn absolute top-2 right-2"
+                  className="copy_btn absolute top-0 right-0"
                   onClick={handleCopySummary}
                 >
                   <img
