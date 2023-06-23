@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import { copy, linkIcon, loader, tick } from '../assets';
 import { useLazyGetSummaryQuery } from '../services/article';
 
@@ -49,11 +48,20 @@ const Demo = () => {
     }
   };
 
-  // copy the url and toggle the icon for user feedback
   const handleCopy = (copyUrl) => {
     setCopied(copyUrl);
     navigator.clipboard.writeText(copyUrl);
-    setTimeout(() => setCopied(false), 3000);
+    setTimeout(() => {
+      setCopied('');
+    }, 3000);
+  };
+
+  const handleCopySummary = () => {
+    navigator.clipboard.writeText(article.summary);
+    setCopied('Summary copied!');
+    setTimeout(() => {
+      setCopied('');
+    }, 3000);
   };
 
   const handleKeyDown = (e) => {
@@ -110,8 +118,8 @@ const Demo = () => {
               <div className="copy_btn" onClick={() => handleCopy(item.url)}>
                 <img
                   src={copied === item.url ? tick : copy}
-                  alt={copied === item.url ? 'tick_icon' : 'copy_icon'}
-                  className="w-[40%] h-[40%] object-contain"
+                  alt="copy_icon"
+                  className="w-[16px] h-[16px] object-contain"
                 />
               </div>
               <p className="flex-1 font-satoshi text-blue-700 font-medium text-sm truncate">
@@ -149,7 +157,17 @@ const Demo = () => {
               <h2 className="font-satoshi font-bold text-gray-600 text-xl">
                 Article <span className="blue_gradient">Summary</span>
               </h2>
-              <div className="summary_box">
+              <div className="summary_box relative">
+                <div
+                  className="copy_btn absolute top-2 right-2"
+                  onClick={handleCopySummary}
+                >
+                  <img
+                    src={copied === 'Summary copied!' ? tick : copy}
+                    alt="copy_icon"
+                    className="w-[16px] h-[16px] object-contain"
+                  />
+                </div>
                 <p className="font-inter font-medium text-sm text-gray-700">
                   {article.summary}
                 </p>
